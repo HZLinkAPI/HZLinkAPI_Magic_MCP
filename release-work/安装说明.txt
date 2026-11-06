@@ -1,0 +1,25 @@
+HZLinkAPI Magic · macOS 内测 0.3.3-beta.1
+
+安装
+1. 装好新版 ChatGPT 桌面端和 Magpie。打开 Magpie，用你自己的 HZLinkAPI 凭据配置至少一个生图模型。
+2. 解压整个 ZIP，双击「安装 HZLinkAPI Magic.command」，等 Terminal 显示「安装完成」。
+   安装不需要管理员权限、Homebrew 或另外安装 Node。请保留解压目录内的文件结构，直到安装结束。
+3. 完全退出并重开 ChatGPT。在 Codex 打开一条本机聊天，点击右侧面板标签栏的「＋」，选择「HZLinkAPI Magic」。
+   不用在聊天中发送打开指令。模型列表来自你自己的本机 Magpie；列表为空时，可确认 Magpie 已启动后刷新。
+
+内测包包含 Apple Silicon 和 Intel 两种 Node 运行时。已在 Apple Silicon 上验证安装，
+Intel 仍需真机验证，并需要适配 Intel 的 ChatGPT 和 Magpie。首发为本地图片功能内测。
+安装脚本未做 Apple 公证；如果 macOS 阻止首次打开，请先确认包来自可信来源。
+
+安装和升级
+程序位于「~/Library/Application Support/HZLinkAPI Magic/app」。
+图片、参考图、历史记录和主题、语言偏好位于同目录下的「data」，升级或重装都会保留。
+安装只更新 ChatGPT/Codex 的 HZLinkAPI Magic 入口和 MCP 面板开关，不改 Magpie 配置。
+如果之前装过同名原型，安装会替换同名入口。原型目录和历史文件仍在原处，新版图库从空开始。
+若已有桌面端配置，安装器会在本机「config-backups」保存副本，不会把副本上传或放回 ZIP。
+
+使用
+选择模型和参数后点击发送才会生图。历史图库保存在本机；
+点「下载 PNG」会弹出 macOS 保存窗口，点「把图片返回聊天」才会把结果交给聊天。
+
+第三方组件的许可证在 licenses 文件夹内。

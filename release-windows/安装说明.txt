@@ -1,0 +1,23 @@
+HZLinkAPI Magic · Windows 内测 0.3.3-win-beta.1
+
+安装
+1. 安装新版 ChatGPT 桌面端和 Magpie。打开 Magpie，用自己的 HZLinkAPI 凭据配置至少一个生图模型。
+2. 在 ZIP 上右键选「全部解压」。打开解压后的文件夹，双击 Install HZLinkAPI Magic.cmd。
+   正常安装不需要管理员权限、Node 或 PowerShell 脚本权限。不要在 ZIP 预览窗口内运行安装器。
+   如果没有自动找到 Magpie，会弹出窗口请你选择 magpie.exe。
+3. 看到「安装完成」后，完全退出并重开 ChatGPT。在 Codex 的本机聊天里，点右侧面板的「＋」→「HZLinkAPI Magic」。
+   不用在聊天中发送打开指令。模型列表来自自己的 Magpie；列表为空时，确认 Magpie 正在运行后点击刷新。
+
+验证
+选一个生图模型，生成一张图片。用「下载 PNG」试一下 Windows「另存为」；
+关掉面板再打开，在历史图库里应能找到刚生成的图，并可继续编辑。
+内测包含 x64 和 ARM64 运行时。首次安装、右侧入口、另存为和真实生图仍需 Windows 真机验收。
+安装器尚未签名。如果 Windows 或组织策略阻止运行，请先确认来源，不要关闭系统保护。
+
+数据与升级
+程序安装在 %LOCALAPPDATA%\HZLinkAPI Magic\app。
+图片、参考图、历史记录和主题、语言偏好存放在 %LOCALAPPDATA%\HZLinkAPI Magic\data，升级或重装都会保留。
+安装器只更新当前用户的同名 MCP 入口和面板开关，不更改 Magpie 的配置。
+如果原来已有 Codex 配置，会先在 %LOCALAPPDATA%\HZLinkAPI Magic\config-backups 备份。
+
+第三方组件的许可证在 licenses 文件夹内。
