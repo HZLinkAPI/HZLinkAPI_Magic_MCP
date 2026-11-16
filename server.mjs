@@ -3,7 +3,8 @@ import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'
 import { registerAppTool, registerAppResource, RESOURCE_MIME_TYPE } from '@modelcontextprotocol/ext-apps/server';
 import { z } from 'zod';
 import { readFile } from 'node:fs/promises';
-import { join } from 'node:path';
+import { join,resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { imageModels, startImage, imageJob, root } from './magpie.mjs';
 import { referenceChunk } from './references.mjs';
 import { downloadCompletedImage } from './save-image.mjs';
@@ -23,7 +24,7 @@ const uiMeta = {
 };
 const error = e => ({ isError: true, content: [{ type: 'text', text: e.message }] });
 export function createServer() {
-  const server = new McpServer({ name: 'hzlinkapi-creator', version: '0.2.0' });
+  const server = new McpServer({ name: 'hzlinkapi-creator', version: '0.3.4' });
   // Keep old chat cards readable and give newly opened panels a fresh cache key.
   for (const resourceUri of [uri, ...legacyUris]) registerAppResource(server, title, resourceUri, { description: '从本机 Magpie 选模型生成图片', _meta: { ui: { prefersBorder: true } } }, async () => ({
     contents: [{ uri: resourceUri, mimeType: RESOURCE_MIME_TYPE, text: await readFile(join(root, 'dist/widget.html'), 'utf8'), _meta: {
@@ -80,4 +81,4 @@ export function createServer() {
   registerPreferences(server,appOnly);
   return server;
 }
-if (process.argv[1]?.endsWith('/server.mjs')) await createServer().connect(new StdioServerTransport());
+if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) await createServer().connect(new StdioServerTransport());

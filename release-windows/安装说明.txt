@@ -1,4 +1,4 @@
-HZLinkAPI Magic · Windows 内测 0.3.3-win-beta.1
+HZLinkAPI Magic · Windows 内测 0.3.4-win-beta.1
 
 安装
 1. 安装新版 ChatGPT 桌面端和 Magpie。打开 Magpie，用自己的 HZLinkAPI 凭据配置至少一个生图模型。
@@ -11,6 +11,7 @@ HZLinkAPI Magic · Windows 内测 0.3.3-win-beta.1
 验证
 选一个生图模型，生成一张图片。用「下载 PNG」试一下 Windows「另存为」；
 关掉面板再打开，在历史图库里应能找到刚生成的图，并可继续编辑。
+PNG 参考图长边超过 2048 像素时，发送前会等比例缩小临时副本；原图和历史记录不变。
 内测包含 x64 和 ARM64 运行时。首次安装、右侧入口、另存为和真实生图仍需 Windows 真机验收。
 安装器尚未签名。如果 Windows 或组织策略阻止运行，请先确认来源，不要关闭系统保护。
 

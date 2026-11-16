@@ -4,7 +4,7 @@ import {join,dirname,isAbsolute,basename,resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {access,copyFile,mkdir,mkdtemp,realpath,rename,rm,stat} from 'node:fs/promises';
 
-const version='0.3.3-win-beta.1';
+const version='0.3.4-win-beta.1';
 const packageDir=dirname(fileURLToPath(import.meta.url));
 const home=homedir();
 const required=['server.mjs','dist/widget.html','runtime/node.exe','magic-native.exe'];

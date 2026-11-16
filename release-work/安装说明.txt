@@ -1,4 +1,4 @@
-HZLinkAPI Magic · macOS 内测 0.3.3-beta.1
+HZLinkAPI Magic · macOS 内测 0.3.4-beta.1
 
 安装
 1. 装好新版 ChatGPT 桌面端和 Magpie。打开 Magpie，用你自己的 HZLinkAPI 凭据配置至少一个生图模型。
@@ -21,5 +21,6 @@ Intel 仍需真机验证，并需要适配 Intel 的 ChatGPT 和 Magpie。首发
 使用
 选择模型和参数后点击发送才会生图。历史图库保存在本机；
 点「下载 PNG」会弹出 macOS 保存窗口，点「把图片返回聊天」才会把结果交给聊天。
+PNG 参考图长边超过 2048 像素时，发送前会等比例缩小临时副本；原图和历史记录不变。
 
 第三方组件的许可证在 licenses 文件夹内。

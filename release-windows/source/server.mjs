@@ -23,7 +23,7 @@ const uiMeta = {
 };
 const error = e => ({ isError: true, content: [{ type: 'text', text: e.message }] });
 export function createServer() {
-  const server = new McpServer({ name: 'hzlinkapi-creator', version: '0.3.3' });
+  const server = new McpServer({ name: 'hzlinkapi-creator', version: '0.3.4' });
   // Keep old chat cards readable and give newly opened panels a fresh cache key.
   for (const resourceUri of [uri, ...legacyUris]) registerAppResource(server, title, resourceUri, { description: '从本机 Magpie 选模型生成图片', _meta: { ui: { prefersBorder: true } } }, async () => ({
     contents: [{ uri: resourceUri, mimeType: RESOURCE_MIME_TYPE, text: await readFile(join(root, 'dist/widget.html'), 'utf8'), _meta: {

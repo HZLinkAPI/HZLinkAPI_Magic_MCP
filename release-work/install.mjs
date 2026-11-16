@@ -6,7 +6,7 @@ import {fileURLToPath} from 'node:url';
 import {access,chmod,copyFile,mkdir,mkdtemp,readFile,realpath,rename,rm,writeFile} from 'node:fs/promises';
 import {constants} from 'node:fs';
 
-const betaVersion='0.3.3-beta.1';
+const betaVersion='0.3.4-beta.1';
 const packageDir=dirname(fileURLToPath(import.meta.url));
 const serverName='hzlinkapi_creator';
 const keys=['server.mjs','dist/widget.html','runtime/node'];

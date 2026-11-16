@@ -26,7 +26,8 @@ export async function verifiedRuntime(variant,file){
   }catch(error){if(error.code!=='ENOENT')throw error;}
   await mkdir(dirname(file),{recursive:true});
   const temporary=file+'.'+randomUUID()+'.tmp';
-  const url=`https://nodejs.org/dist/v${runtimeVersion}/node-v${runtimeVersion}-${variant}`;
+  const base=(process.env.HZLM_NODE_DIST_BASE||'https://nodejs.org/dist').replace(/\/+$/,'');
+  const url=`${base}/v${runtimeVersion}/node-v${runtimeVersion}-${variant}`;
   try{
     const response=await fetch(url,{redirect:'error',signal:AbortSignal.timeout(180000)});
     if(!response.ok||!response.body)throw new Error(`Unable to download Node.js: HTTP ${response.status}`);

@@ -9,6 +9,7 @@ import { loadReferences } from './references.mjs';
 import { generationMetadata,persistImageRecord } from './image-history.mjs';
 import { normalizeImageOutput,macImageToPNG } from '../../image-output.mjs';
 import { outputDirectory } from './storage.mjs';
+import { prepareReferenceImages,macReferenceToPNG } from '../../reference-input.mjs';
 export const root=dirname(fileURLToPath(import.meta.url));
 export const outputDir=outputDirectory;
 export const jobs=new Map();
@@ -50,7 +51,8 @@ async function execute(job,a,refs){
   try{
     staging=await mkdtemp(join(outputDir,`.${job.id}-`));
     const requested=join(staging,`${job.id}.png`);
-    const text=await run(cli,generationArgs(a,requested,refs));
+    const prepared=await prepareReferenceImages(refs,staging,macReferenceToPNG);
+    const text=await run(cli,generationArgs(a,requested,prepared));
     const served=text.match(/^Generated with (\S+?)(?:\. The images?\b|, saved to:)/m)?.[1];
     if(served!==a.model)throw new Error('Magpie 未确认使用指定模型；没有换模型重试');
     Object.assign(job,await normalizeImageOutput(requested,job.file,macImageToPNG));

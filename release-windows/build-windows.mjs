@@ -29,6 +29,10 @@ async function licenses(source,destination){
   await mkdir(destination,{recursive:true});
   for(const file of await readdir(source))if(/^(licen[cs]e|copying|notice|patents)/i.test(file))await cp(join(source,file),join(destination,file),{recursive:true});
 }
+function zipEntry(archive,entry){
+  const windows=process.platform==='win32';
+  return execFileSync(windows?'tar.exe':'/usr/bin/unzip',windows?['-xOf',archive,entry]:['-p',archive,entry],{maxBuffer:200*1024*1024});
+}
 for(const name of modules)await licenses(join(root,'node_modules',name),join(stage,'licenses',name.replaceAll('/','-')));
 await copyFile(join(root,'Geist-LICENSE.txt'),join(stage,'licenses','Geist-LICENSE.txt'));
 const go=(args,env={})=>execFileSync('go',args,{cwd:native,encoding:'utf8',env:{...process.env,...env}});
@@ -43,10 +47,10 @@ for(const [arch,goarch] of [['x64','amd64'],['arm64','arm64']]){
   await verifiedRuntime(`win-${arch}.zip`,archive);
   await mkdir(folder,{recursive:true});
   for(const [entry,destination] of [['node.exe',join(folder,'node.exe')],['LICENSE',join(stage,'licenses',`Node.js-${arch}-LICENSE.txt`)]])
-    await writeFile(destination,execFileSync('/usr/bin/unzip',['-p',archive,label+'/'+entry],{maxBuffer:200*1024*1024}));
+    await writeFile(destination,zipEntry(archive,label+'/'+entry));
   go(['build','-trimpath','-ldflags=-s -w','-o',join(folder,'magic-native.exe'),'.'],{GOOS:'windows',GOARCH:goarch,CGO_ENABLED:'0'});
 }
 const fixture=join(base,'work','magic-native-host-test');
 go(['build','-trimpath','-o',fixture,'.']);
-await chmod(fixture,0o700);
+if(process.platform!=='win32')await chmod(fixture,0o700);
 console.log('Windows stage: x64 and ARM64, no private user data.');

@@ -1,9 +1,9 @@
 {
   "name": "hzlinkapi-magic-mcp",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "Local Magpie image generation and editing MCP App for ChatGPT",
   "scripts": {
-    "test": "node test.mjs && node ui-test.mjs && node cli-args-test.mjs && node download-test.mjs && node history-test.mjs && node image-output-test.mjs",
+    "test": "node test.mjs && node ui-test.mjs && node cli-args-test.mjs && node download-test.mjs && node history-test.mjs && node image-output-test.mjs && node reference-input-test.mjs",
     "build": "node build.mjs",
     "start": "node server.mjs",
     "pretest": "node build.mjs"
